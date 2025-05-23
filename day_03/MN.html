@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .song{
+            display: inline-block;
+            width: 250px;
+            margin: 10px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        img{
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Listen to your favourite music</h1>
+        <h2>Top 3 trending songs on youtube</h2>
+    </header>
+    <div class="song">
+        <img src="https://tse2.mm.bing.net/th?id=OIP.nOJgpmWVbVnUbFuK1xZ_OQAAAA&pid=Api&P=0&h=180">
+        <a href=" https://www.youtube.com/watch?v=DDBUrQ8bdlc&list=RDVPIr4Le0IUA&index=4 " target="_blank">Listen on youtube </a>
+    </div>
+    <div class="song">
+        <img src="https://tse3.mm.bing.net/th?id=OIP.YfGT-Vnkddp8T5ubMYqj0AAAAA&pid=Api&P=0&h=180">
+        <a href="https://www.youtube.com/watch?v=VPIr4Le0IUA&list=RDVPIr4Le0IUA&index=1" target="_blank">Listen on youtube</a>
+    </div>
+    <div class="song">
+        <img src="https://tse3.mm.bing.net/th?id=OIP.fbBIW6NWdPx_NY_4jjV5YgHaEK&pid=Api&P=0&h=180">
+        <a href="https://www.youtube.com/watch?v=2pOVz45p8Ho&list=RDVPIr4Le0IUA&index=11" target="_blank">Listen on youtube</a>
+    </div>
+    <h3>Search your song</h3>
+    <form action="https://www.youtube.com/results" method="get" target="_blank">
+        <input type="text" name="search_query" placeholder="Enter song name">
+        <button type="submit">Search on Youtube</button>
+    </form>
+    
+</body>
+</html>
