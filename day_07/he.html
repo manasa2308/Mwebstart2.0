@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .quiz-container {
+      background-color: #fff;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 400px;
+    }
+    .question {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+    .answers label {
+      display: block;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div id="quiz">
+      <!-- Question and answers will be injected here -->
+    </div>
+    <div class="feedback" id="feedback"></div>
+    <button id="submit">Submit</button>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "What is the capital of France?",
+        answers: ["Berlin", "Madrid", "Paris", "Rome"],
+        correct: 2
+      },
+      {
+        question: "Which planet is known as the Red Planet?",
+        answers: ["Earth", "Mars", "Jupiter", "Venus"],
+        correct: 1
+      },
+      {
+        question: "What is 2 + 2?",
+        answers: ["3", "4", "5", "6"],
+        correct: 1
+      }
+    ];
+
+    let currentQuestionIndex = 0;
+
+    const quiz = document.getElementById('quiz');
+    const feedback = document.getElementById('feedback');
+    const submitBtn = document.getElementById('submit');
+
+    function loadQuestion() {
+      const currentQuestion = questions[currentQuestionIndex];
+      const answersHTML = currentQuestion.answers.map((answer, index) => `
+        <label><input type="radio" name="answer" value="${index}"> ${answer}</label>
+      `).join('');
+
+      quiz.innerHTML = `
+        <div class="question">${currentQuestion.question}</div>
+        <div class="answers">${answersHTML}</div>
+      `;
+      feedback.textContent = '';
+    }
+
+    submitBtn.addEventListener('click', () => {
+      const selected = document.querySelector('input[name="answer"]:checked');
+      if (!selected) {
+        feedback.textContent = "Please select an answer.";
+        feedback.style.color = 'red';
+        return;
+      }
+      const answer = parseInt(selected.value);
+      if (answer === questions[currentQuestionIndex].correct) {
+        feedback.textContent = "Correct!";
+        feedback.style.color = 'green';
+      } else {
+        feedback.textContent = "Wrong!";
+        feedback.style.color = 'red';
+      }
+
+      setTimeout(() => {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+          loadQuestion();
+        } else {
+          quiz.innerHTML = "<div class='question'>Quiz Completed!</div>";
+          submitBtn.style.display = 'none';
+          feedback.textContent = '';
+        }
+      }, 1000);
+    });
+
+    loadQuestion();
+  </script>
+</body>
+</html>
